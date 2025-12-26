@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "chat_responses",
+  "info": {
+    "singularName": "chat-response",
+    "pluralName": "chat-responses",
+    "displayName": "ChatResponse"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "trigger": {
+      "type": "string"
+    },
+    "response": {
+      "type": "blocks"
+    },
+    "enabled": {
+      "type": "boolean"
+    },
+    "priority": {
+      "type": "integer"
+    }
+  }
+}

@@ -1,10 +1,44 @@
-export default function AboutPage() {
+import AboutBanner from "@/components/pages/about/AboutBanner";
+import History from "@/components/pages/about/HistorySection";
+import TeamSection from "@/components/pages/about/TeamSection";
+import VisionSection from "@/components/pages/about/VisionSection";
+
+export default async function AboutPage() {
+
+  	const res = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/api/about?populate=*`, {
+		next: { revalidate: 3600 }, // revalidate every hour
+	});
+	const images = await res.json();
+
   return (
-    <section>
-      <h1 className="text-3xl font-bold">About</h1>
-      <p className="mt-4 text-zinc-600 dark:text-zinc-400">
-        This is the About page. Add your organization's description here.
-      </p>
-    </section>
+    <div className="bg-white">
+      <AboutBanner image={images.data?.ImageBanner.formats.large.url} />
+      <History imageSrc={images.data?.ImageHistoire.formats.large.url} />
+      <TeamSection />
+      <VisionSection mapImage={images.data?.ImageVision.formats.large.url} />
+    </div>
   );
 }
+
+
+import { generateMetadata as generateMeta, generateBreadcrumbSchema } from '@/utils/metadata';
+
+export const metadata = generateMeta({
+  title: 'À Propos de Nous',
+  description: 'Découvrez l\'histoire et les valeurs du Groupe Ahmed Soltan, promoteur immobilier de confiance depuis des années. Notre mission : offrir des logements de qualité en Algérie.',
+  path: '/about',
+  keywords: [
+    'Groupe Ahmed Soltan',
+    'histoire GAS',
+    'promoteur immobilier Algérie',
+    'valeurs immobilières',
+    'entreprise immobilière Alger',
+    'qui sommes-nous',
+  ],
+  ogImage: '/assets/og-about.jpg', // 1200x630px - Team photo or company building
+  ogImageAlt: 'L\'équipe du Groupe Ahmed Soltan',
+  structuredData: generateBreadcrumbSchema([
+    { name: 'Accueil', path: '/' },
+    { name: 'À Propos', path: '/about' },
+  ]),
+});

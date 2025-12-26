@@ -1,24 +1,47 @@
-import Link from "next/link";
+import ArticlesListSection from "@/components/pages/blog/ArticlesListSection";
+import NewsletterBanner from "@/components/pages/blog/NewsletterBanner";
 
-const posts = [
-  { slug: "welcome", title: "Welcome" },
-  { slug: "changelog", title: "Changelog" },
-];
+async function getArticles() {
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/articles?populate=*`,
+    {
+      next: { revalidate: 3600 }, // ISR: revalidate every hour
+    }
+  );
 
-export default function BlogPage() {
+  if (!res.ok) {
+    throw new Error("Failed to fetch articles");
+  }
+
+  const articles = await res.json();
+  return articles.data?.map((item) => ({
+    id: item.id,
+    title: item.title,
+    excerpt: item.excerpt,
+    slug: item.slug,
+    publishedAt: item.publishedAt,
+    shares: item.shares,
+
+    author: {
+      name: item.author?.name,
+      avatar:
+        item.author?.data?.avatar?.data?.url,
+    },
+
+    coverImage: {
+      url: item.cover?.url,
+      alt: item.coverAlt || item.title,
+    },
+  }));
+}
+
+export default async function BlogPage() {
+  const articles = await getArticles();
+
   return (
-    <section>
-      <h1 className="text-3xl font-bold">Blog</h1>
-      <p className="mt-2 text-zinc-600 dark:text-zinc-400">Latest posts.</p>
-      <ul className="mt-4 space-y-2">
-        {posts.map((p) => (
-          <li key={p.slug}>
-            <Link href={`/blog/${p.slug}`} className="text-indigo-600 hover:underline">
-              {p.title}
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </section>
+    <>
+      <NewsletterBanner backgroundImage="/assets/articles-page-bg.jpg" />
+      <ArticlesListSection articles={articles} />
+    </>
   );
 }

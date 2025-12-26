@@ -1,0 +1,39 @@
+{
+  "kind": "collectionType",
+  "collectionName": "project_contacts",
+  "info": {
+    "singularName": "project-contact",
+    "pluralName": "project-contacts",
+    "displayName": "projectContact"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "firstName": {
+      "type": "string"
+    },
+    "lastName": {
+      "type": "string"
+    },
+    "phone": {
+      "type": "biginteger"
+    },
+    "comment": {
+      "type": "text"
+    },
+    "locality": {
+      "type": "string"
+    },
+    "typology": {
+      "type": "string"
+    },
+    "wilaya": {
+      "type": "string"
+    },
+    "projectName": {
+      "type": "string"
+    }
+  }
+}

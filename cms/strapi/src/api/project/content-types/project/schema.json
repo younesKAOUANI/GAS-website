@@ -1,0 +1,80 @@
+{
+  "kind": "collectionType",
+  "collectionName": "projects",
+  "info": {
+    "singularName": "project",
+    "pluralName": "projects",
+    "displayName": "Project"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "name",
+      "required": true
+    },
+    "shortDescription": {
+      "type": "text"
+    },
+    "description": {
+      "type": "richtext"
+    },
+    "projectStatus": {
+      "type": "enumeration",
+      "default": "en cours",
+      "enum": [
+        "en cours",
+        "livré",
+        "à venir"
+      ]
+    },
+    "location": {
+      "type": "string"
+    },
+    "coverImage": {
+      "type": "media",
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "gallery": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "mapImage": {
+      "type": "media",
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "features": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::project-feature.project-feature",
+      "mappedBy": "project"
+    },
+    "timings": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::project-timing.project-timing",
+      "mappedBy": "project"
+    },
+    "typologies": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::project-typologie.project-typologie",
+      "mappedBy": "project"
+    }
+  }
+}

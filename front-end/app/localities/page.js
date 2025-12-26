@@ -1,8 +1,16 @@
-export default function LocalitiesPage() {
+import InvestmentMap from "@/components/pages/localities/InvestementMap";
+
+export default async function LocalitiesPage() {
+
+    	const res = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/api/localities?populate=*`, {
+		next: { revalidate: 3600 }, // revalidate every hour
+	});
+	const localities = await res.json();
+  console.log("Localities data:", localities);
+
   return (
-    <section>
-      <h1 className="text-3xl font-bold">Localities</h1>
-      <p className="mt-4 text-zinc-600 dark:text-zinc-400">Information about localities served.</p>
-    </section>
+    <>
+<InvestmentMap  residences={localities.data} />
+    </>
   );
 }

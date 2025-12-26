@@ -1,0 +1,31 @@
+{
+  "kind": "collectionType",
+  "collectionName": "project_timings",
+  "info": {
+    "singularName": "project-timing",
+    "pluralName": "project-timings",
+    "displayName": "Project Timing"
+  },
+  "attributes": {
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "sea",
+        "school",
+        "transport",
+        "airport"
+      ],
+      "required": true
+    },
+    "minutes": {
+      "type": "integer",
+      "required": true
+    },
+    "project": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::project.project",
+      "inversedBy": "timings"
+    }
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "kind": "collectionType",
+  "collectionName": "opportunity_moments",
+  "info": {
+    "singularName": "opportunity-moment",
+    "pluralName": "opportunity-moments",
+    "displayName": "OpportunityMoment"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "detail": {
+      "type": "string"
+    },
+    "location": {
+      "type": "string"
+    },
+    "surface": {
+      "type": "integer"
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "Appartement",
+        "Local Commercial"
+      ]
+    },
+    "price": {
+      "type": "biginteger"
+    },
+    "name": {
+      "type": "string"
+    },
+    "typology": {
+      "type": "string"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    }
+  }
+}

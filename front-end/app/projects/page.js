@@ -1,24 +1,34 @@
-import Link from "next/link";
+"use client";
 
-const sample = [
-  { slug: "project-alpha", title: "Project Alpha" },
-  { slug: "project-beta", title: "Project Beta" },
-];
+import ProjectsBanner from "@/components/pages/projects/ProjectsBanner";
+import ProjectsList from "@/components/pages/projects/ProjectsList";
+import { useState } from "react";
+
 
 export default function ProjectsPage() {
+  const [filters, setFilters] = useState({
+    location: "",
+    status: "",
+    typology: "",
+    finish: "",
+  });
+
+  const [appliedFilters, setAppliedFilters] = useState(filters);
+
   return (
-    <section>
-      <h1 className="text-3xl font-bold">Projects</h1>
-      <p className="mt-2 text-zinc-600 dark:text-zinc-400">A list of projects.</p>
-      <ul className="mt-4 space-y-2">
-        {sample.map((p) => (
-          <li key={p.slug}>
-            <Link href={`/projects/${p.slug}`} className="text-indigo-600 hover:underline">
-              {p.title}
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </section>
+    <>
+      <ProjectsBanner
+        filters={filters}
+        setFilters={setFilters}
+        onSearch={() => setAppliedFilters(filters)}
+        onReset={() => {
+          const empty = { location: "", status: "", typology: "", finish: "" };
+          setFilters(empty);
+          setAppliedFilters(empty);
+        }}
+      />
+
+      <ProjectsList filters={appliedFilters} />
+    </>
   );
 }

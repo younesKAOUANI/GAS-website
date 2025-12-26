@@ -1,0 +1,35 @@
+{
+  "kind": "collectionType",
+  "collectionName": "project_features",
+  "info": {
+    "singularName": "project-feature",
+    "pluralName": "project-features",
+    "displayName": "Project Feature"
+  },
+  "attributes": {
+    "key": {
+      "type": "enumeration",
+      "enum": [
+        "blocks",
+        "floors",
+        "elevator",
+        "security",
+        "parking"
+      ],
+      "required": true
+    },
+    "label": {
+      "type": "string",
+      "required": true
+    },
+    "value": {
+      "type": "string"
+    },
+    "project": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::project.project",
+      "inversedBy": "features"
+    }
+  }
+}

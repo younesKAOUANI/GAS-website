@@ -1,0 +1,46 @@
+{
+  "kind": "collectionType",
+  "collectionName": "project_typologies",
+  "info": {
+    "singularName": "project-typologie",
+    "pluralName": "project-typologies",
+    "displayName": "Project Typologie",
+    "description": "Apartment typologies for real estate projects"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "code": {
+      "type": "string",
+      "required": true
+    },
+    "surfaceMin": {
+      "type": "integer",
+      "required": true
+    },
+    "surfaceMax": {
+      "type": "integer",
+      "required": true
+    },
+    "priceFrom": {
+      "type": "biginteger",
+      "required": true
+    },
+    "statusTypologie": {
+      "type": "enumeration",
+      "enum": [
+        "Disponible",
+        "Réservé",
+        "Vendu"
+      ],
+      "default": "Disponible"
+    },
+    "project": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::project.project",
+      "inversedBy": "typologies"
+    }
+  }
+}
