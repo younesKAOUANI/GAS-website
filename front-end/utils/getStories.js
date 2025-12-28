@@ -12,7 +12,6 @@ export async function getStories() {
 
   
   const json = await res.json();
-  console.log("Fetched stories:", json);
   if (!res.ok) return [];
   return json.data;
 }

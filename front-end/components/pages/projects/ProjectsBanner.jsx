@@ -64,7 +64,7 @@ export default function ProjectsBanner({
 
       {/* Text */}
       <div className="relative z-10 mx-auto flex h-full max-w-7xl flex-col justify-center px-4 sm:px-6">
-        <div className="max-w-3xl text-white md:text-right text-center">
+        <div className="max-w-3xl text-white md:text-left text-center">
           <h1 className="text-3xl sm:text-4xl lg:text-6xl font-bold leading-tight">
             Découvrez nos résidences <br />
             votre futur cadre de vie

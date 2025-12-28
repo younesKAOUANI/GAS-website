@@ -1,7 +1,6 @@
 import Image from "next/image";
 
 export default function FinitionCard({ image, title, description, href }) {
-  console.log(image)
   return (
     <article className="flex flex-col overflow-hidden rounded-lg bg-white shadow-sm inner-shadow">
       <div className="h-80 w-full relative">

@@ -25,8 +25,6 @@ const mappedHeroCarousel = [
   heroCarousel.data.thirdItem || null,
 ].filter(Boolean); // remove nulls
   
-
-console.log("Mapped hero carousel:", mappedHeroCarousel);
 	const opportunities = await res.json();
 
   return (

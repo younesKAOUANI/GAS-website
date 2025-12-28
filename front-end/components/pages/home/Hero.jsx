@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 "use client";
 
 import React, { useEffect, useState, useRef } from "react";
@@ -33,6 +34,12 @@ export default function HomeHero({ media = {}, interval = 5000 }) {
     if (mediaArray.length <= 1) return;
     
     const currentItem = mediaArray[activeIndex];
+    
+    // Reset and play video when it becomes active
+    if (currentItem?.type === "video" && videoRef.current) {
+      videoRef.current.currentTime = 0;
+      videoRef.current.play().catch(err => console.log("Video play failed:", err));
+    }
     
     // Only set timer for images, videos handle their own progression
     if (currentItem?.type === "image") {
@@ -73,7 +80,9 @@ export default function HomeHero({ media = {}, interval = 5000 }) {
                 autoPlay
                 muted
                 playsInline
+                preload="auto"
                 onEnded={handleVideoEnd}
+                key={`video-${index}-${activeIndex}`}
               />
             ) : (
               <Image

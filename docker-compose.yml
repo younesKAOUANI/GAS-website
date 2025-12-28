@@ -1,0 +1,77 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: strapi
+      POSTGRES_USER: strapi
+      POSTGRES_PASSWORD: strapi
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - web
+
+  cms:
+    build:
+      context: ./cms
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    depends_on:
+      - postgres
+    env_file:
+      - ./cms/strapi/.env
+    environment:
+      NODE_ENV: production
+      # Ensure DB host points to the compose postgres service (overrides .env)
+      DATABASE_HOST: postgres
+      DATABASE_PORT: 5432
+      # Expose internal base URL for Strapi (unused by browser when proxied)
+      NEXT_PUBLIC_STRAPI_URL: http://cms:1337
+    volumes:
+      - ./cms/strapi:/srv/app
+      - ./cms/uploads:/srv/app/public/uploads
+    ports:
+      - "1337:1337"
+    networks:
+      - web
+
+  front-end:
+    build:
+      context: ./front-end
+      dockerfile: Dockerfile
+      args:
+        NEXT_PUBLIC_STRAPI_URL: ${NEXT_PUBLIC_STRAPI_URL:-http://127.0.0.1:1337}
+    restart: unless-stopped
+    environment:
+      NODE_ENV: production
+      NEXT_PUBLIC_STRAPI_URL: ${NEXT_PUBLIC_STRAPI_URL:-http://127.0.0.1:1337}
+    env_file:
+      - ./front-end/.env
+    depends_on:
+      - cms
+    volumes:
+      - ./front-end/public:/app/public:ro
+    networks:
+      - web
+
+  nginx:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    depends_on:
+      - front-end
+      - cms
+    ports:
+      - "80:80"
+    networks:
+      - web
+
+volumes:
+  pgdata:
+
+networks:
+  web:
+    driver: bridge
