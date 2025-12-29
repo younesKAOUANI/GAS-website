@@ -35,7 +35,8 @@ const contactCards = [
 ];
 
 
-export default function ContactInfo({faqs=[]}) {
+export default function ContactInfo({faqs}) {
+	const safeFaqs = Array.isArray(faqs) ? faqs : [];
 	return (
 		<div className="w-full flex flex-col items-center gap-12 bg-white px-4">
 			{/* Contact Info Cards Section */}
@@ -57,14 +58,20 @@ export default function ContactInfo({faqs=[]}) {
 			<section className="w-full max-w-3xl pb-12">
 				<h2 className="text-2xl font-bold mb-6 text-center">Foire aux questions
 </h2>
-				<div className="space-y-4">
-					{faqs.map((faq, idx) => (
-						<details key={idx} className="bg-[#EEF1FF] rounded-lg shadow-md text-primary p-4">
-							<summary className="font-medium text-lg cursor-pointer text-black">{faq.question}</summary>
-							<p className="mt-2 text-black">{faq.answer}</p>
-						</details>
-					))}
-				</div>
+				  <div className="space-y-4">
+					  {safeFaqs.length === 0 ? (
+						  <div className="text-center text-gray-500 py-8">
+							  Aucune question fréquente disponible pour le moment.
+						  </div>
+					  ) : (
+						  safeFaqs.map((faq, idx) => (
+							  <details key={idx} className="bg-[#EEF1FF] rounded-lg shadow-md text-primary p-4">
+								  <summary className="font-medium text-lg cursor-pointer text-black">{faq.question}</summary>
+								  <p className="mt-2 text-black">{faq.answer}</p>
+							  </details>
+						  ))
+					  )}
+				  </div>
 			</section>
 		</div>
 	);

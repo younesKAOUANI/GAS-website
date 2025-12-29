@@ -5,17 +5,29 @@ import React, { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import Button from "../../main/ui/Button";
 
+
 export default function HomeHero({ media = {}, interval = 5000 }) {
   const [activeIndex, setActiveIndex] = useState(0);
   const videoRef = useRef(null);
   const timerRef = useRef(null);
 
+  // Fallback video if no media is provided
+  const fallbackVideo = {
+    src: "/assets/fallback-hero.mp4", // Place your fallback video in public/assets/
+    type: "video",
+    poster: "/assets/fallback-hero.jpg", // Optional: fallback poster image
+  };
+
   // Convert media object { firstItem, secondItem, thirdItem } into an array
-  const mediaArray = Object.values(media).filter(Boolean).map((item) => ({
+  let mediaArray = Object.values(media).filter(Boolean).map((item) => ({
     src: item.url,
     type: item.mime?.startsWith("video") ? "video" : "image",
     poster: item.previewUrl || "",
   }));
+
+  if (mediaArray.length === 0) {
+    mediaArray = [fallbackVideo];
+  }
 
   const goToNext = () => {
     setActiveIndex((prev) => (prev + 1) % mediaArray.length);

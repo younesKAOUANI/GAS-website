@@ -12,10 +12,10 @@ export default async function AboutPage() {
 
   return (
     <div className="bg-white">
-      <AboutBanner image={images.data?.ImageBanner.formats.large.url} />
-      <History imageSrc={images.data?.ImageHistoire.formats.large.url} />
+      <AboutBanner image={images.data?.ImageBanner?.formats?.large?.url || "/assets/backup/aboutBanner.jpg"} />
+      <History imageSrc={images.data?.ImageHistoire?.formats?.large?.url || "/assets/backup/aboutHistory.png"} />
       <TeamSection />
-      <VisionSection mapImage={images.data?.ImageVision.formats.large.url} />
+      <VisionSection mapImage={images.data?.ImageVision?.formats?.large?.url || "/assets/backup/aboutMap.png"} />
     </div>
   );
 }

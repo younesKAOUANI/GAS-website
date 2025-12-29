@@ -28,7 +28,12 @@ async function getArticles() {
 }
 
 export async function NewsSection() {
-  const news = await getArticles();
+  let news = null;
+  try {
+    news = await getArticles();
+  } catch (e) {
+    return null;
+  }
   const latest = (news || [])
     .filter((n) => n?.publishedAt)
     .sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt))

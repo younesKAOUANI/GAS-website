@@ -5,36 +5,63 @@ import { useRouter } from 'next/navigation';
 
 const LOCATIONS = ['Bordj El Bahri', 'Bordj El Kiffan', 'Draria', 'Kouba'];
 
-const InvestmentMap = ({ residences = [] }) => {
+const InvestmentMap = ({ residences = [], error = null }) => {
   const router = useRouter();
   const [selectedLocation, setSelectedLocation] = useState('');
   const [search, setSearch] = useState('');
   const [hoveredResidenceIndex, setHoveredResidenceIndex] = useState(null);
 
-  const filteredResidences = useMemo(() => {
-    let filtered = selectedLocation
-      ? residences.filter(res => res.location === selectedLocation)
-      : residences;
 
-    if (search.trim()) {
-      filtered = filtered.filter(res =>
-        res.location?.toLowerCase().includes(search.toLowerCase()) ||
-        res.name?.toLowerCase().includes(search.toLowerCase())
-      );
+  let filteredResidences = [];
+  let filterError = null;
+  try {
+    filteredResidences = useMemo(() => {
+      let filtered = selectedLocation
+        ? residences.filter(res => res.location === selectedLocation)
+        : residences;
+
+      if (search.trim()) {
+        filtered = filtered.filter(res =>
+          res.location?.toLowerCase().includes(search.toLowerCase()) ||
+          res.name?.toLowerCase().includes(search.toLowerCase())
+        );
+      }
+      return filtered;
+    }, [residences, selectedLocation, search]);
+    if (!Array.isArray(filteredResidences)) {
+      throw new Error('Résidences filtrées non valides.');
     }
-    return filtered;
-  }, [residences, selectedLocation, search]);
+  } catch (e) {
+    filterError = e.message || 'Erreur lors du filtrage des résidences.';
+    filteredResidences = [];
+  }
 
-  const displayedResidence =
-    hoveredResidenceIndex !== null
-      ? filteredResidences[hoveredResidenceIndex]
-      : filteredResidences[0]; // Show first residence by default
+
+  let displayedResidence = null;
+  if (filteredResidences && filteredResidences.length > 0) {
+    displayedResidence =
+      hoveredResidenceIndex !== null
+        ? filteredResidences[hoveredResidenceIndex]
+        : filteredResidences[0];
+  }
 
   const handleResidenceClick = (residence) => {
     // Navigate to projects page with location as query parameter
     const locationParam = encodeURIComponent(residence.location);
     router.push(`/projects?location=${locationParam}`);
   };
+
+
+  if (error || filterError) {
+    return (
+      <div className="container min-h-[600px] flex items-center justify-center mx-auto px-4 py-12 pt-28 md:pt-36">
+        <div className="text-center text-red-600 bg-red-50 border border-red-200 rounded p-6">
+          Une erreur est survenue : {typeof error === 'string' ? error : ''}
+          {filterError && <div>{filterError}</div>}
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="container mx-auto px-4 py-12 pt-28 md:pt-36">

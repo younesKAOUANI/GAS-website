@@ -36,7 +36,26 @@ async function getArticles() {
 }
 
 export default async function BlogPage() {
-  const articles = await getArticles();
+  let articles = [];
+  let error = null;
+  try {
+    articles = await getArticles();
+    if (!articles || !Array.isArray(articles)) {
+      throw new Error('Aucun article trouvé.');
+    }
+  } catch (e) {
+    error = e.message || 'Erreur lors du chargement des articles.';
+  }
+
+  if (error) {
+    return (
+      <div className="container min-h-[600px] flex items-center justify-center mx-auto px-4 py-24 pt-36">
+        <div className="text-center text-red-600 bg-red-50 border border-red-200 rounded p-6">
+         Erreur lors du chargement des articles.
+        </div>
+      </div>
+    );
+  }
 
   return (
     <>

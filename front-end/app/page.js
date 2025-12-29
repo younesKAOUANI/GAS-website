@@ -19,12 +19,17 @@ export default async function Home() {
 const heroCarousel = await resHero.json();
 
 // Map media to specific attributes
-const mappedHeroCarousel = [
-  heroCarousel.data.firstItem || null,
-  heroCarousel.data.secondItem || null,
-  heroCarousel.data.thirdItem || null,
-].filter(Boolean); // remove nulls
-  
+let mappedHeroCarousel = [];
+if (resHero.ok) {
+  mappedHeroCarousel = [
+    heroCarousel.data.firstItem || null,
+    heroCarousel.data.secondItem || null,
+    heroCarousel.data.thirdItem || null,
+  ].filter(Boolean); // remove nulls
+} else {
+  // Fallback: use static or empty array
+  mappedHeroCarousel = [];
+}
 	const opportunities = await res.json();
 
   return (
