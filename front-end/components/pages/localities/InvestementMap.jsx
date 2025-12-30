@@ -124,7 +124,7 @@ const InvestmentMap = ({ residences = [], error = null }) => {
           {displayedResidence && displayedResidence.mapImage?.url ? (
             <div className="relative w-full">
               <Image
-                src={displayedResidence.mapImage.url}
+                src={displayedResidence.mapImage.url?.startsWith('http') ? displayedResidence.mapImage.url : `${process.env.NEXT_PUBLIC_STRAPI_URL}${displayedResidence.mapImage.url}`}
                 alt={displayedResidence.name}
                 width={600}
                 height={1000}
@@ -172,7 +172,7 @@ const InvestmentMap = ({ residences = [], error = null }) => {
                 >
                   <div className="relative">
                     <Image
-                      src={res.image?.url}
+                      src={res.image?.url?.startsWith('http') ? res.image.url : `${process.env.NEXT_PUBLIC_STRAPI_URL}${res.image?.url}`}
                       alt={res.name}
                       width={400}
                       height={400}

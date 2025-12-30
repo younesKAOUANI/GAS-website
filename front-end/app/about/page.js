@@ -12,10 +12,28 @@ export default async function AboutPage() {
 
   return (
     <div className="bg-white">
-      <AboutBanner image={images.data?.ImageBanner?.formats?.large?.url || "/assets/backup/aboutBanner.jpg"} />
-      <History imageSrc={images.data?.ImageHistoire?.formats?.large?.url || "/assets/backup/aboutHistory.png"} />
+      <AboutBanner image={
+        images.data?.ImageBanner?.formats?.large?.url
+          ? (images.data.ImageBanner.formats.large.url.startsWith('http')
+              ? images.data.ImageBanner.formats.large.url
+              : `${process.env.NEXT_PUBLIC_STRAPI_URL}${images.data.ImageBanner.formats.large.url}`)
+          : "/assets/backup/aboutBanner.jpg"
+      } />
+      <History imageSrc={
+        images.data?.ImageHistoire?.formats?.large?.url
+          ? (images.data.ImageHistoire.formats.large.url.startsWith('http')
+              ? images.data.ImageHistoire.formats.large.url
+              : `${process.env.NEXT_PUBLIC_STRAPI_URL}${images.data.ImageHistoire.formats.large.url}`)
+          : "/assets/backup/aboutHistory.png"
+      } />
       <TeamSection />
-      <VisionSection mapImage={images.data?.ImageVision?.formats?.large?.url || "/assets/backup/aboutMap.png"} />
+      <VisionSection mapImage={
+        images.data?.ImageVision?.formats?.large?.url
+          ? (images.data.ImageVision.formats.large.url.startsWith('http')
+              ? images.data.ImageVision.formats.large.url
+              : `${process.env.NEXT_PUBLIC_STRAPI_URL}${images.data.ImageVision.formats.large.url}`)
+          : "/assets/backup/aboutMap.png"
+      } />
     </div>
   );
 }

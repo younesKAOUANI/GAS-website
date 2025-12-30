@@ -20,7 +20,7 @@ export default function HomeHero({ media = {}, interval = 5000 }) {
 
   // Convert media object { firstItem, secondItem, thirdItem } into an array
   let mediaArray = Object.values(media).filter(Boolean).map((item) => ({
-    src: item.url,
+    src: item.url?.startsWith('http') ? item.url : `${process.env.NEXT_PUBLIC_STRAPI_URL}${item.url}`,
     type: item.mime?.startsWith("video") ? "video" : "image",
     poster: item.previewUrl || "",
   }));

@@ -10,7 +10,7 @@ export default function ProjectDetailsBanner({
     <section className="relative h-[700px] w-full overflow-hidden ">
       {/* Background image */}
       <img
-        src={image}
+        src={image && image.startsWith('http') ? image : image && image.startsWith('/') ? image : image ? `${process.env.NEXT_PUBLIC_STRAPI_URL}${image.startsWith('/') ? image : '/' + image}` : ''}
         alt={title}
         className="absolute inset-0 h-full w-full object-cover"
       />

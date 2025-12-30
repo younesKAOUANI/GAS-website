@@ -44,18 +44,28 @@ export default function ProjectGallery({ images = [] }) {
         ref={sliderRef}
         className="flex gap-6 overflow-x-auto scroll-smooth scrollbar-hide"
       >
-        {images.map((src, index) => (
-          <div
-            key={index}
-            className="min-w-[280px] overflow-hidden rounded-2xl bg-gray-100 shadow-md"
-          >
-            <img
-              src={src}
-              alt={`Project image ${index + 1}`}
-              className="h-[360px] w-full object-cover transition-transform duration-300 hover:scale-105"
-            />
-          </div>
-        ))}
+        {images.map((src, index) => {
+          const isStrapi = src && !src.startsWith("/") && !src.startsWith(".") && !src.startsWith("http");
+          const imgUrl = src && src.startsWith("http")
+            ? src
+            : src && src.startsWith("/")
+              ? src
+              : src
+                ? `${process.env.NEXT_PUBLIC_STRAPI_URL}${src.startsWith("/") ? src : "/" + src}`
+                : '';
+          return (
+            <div
+              key={index}
+              className="min-w-[280px] overflow-hidden rounded-2xl bg-gray-100 shadow-md"
+            >
+              <img
+                src={imgUrl}
+                alt={`Project image ${index + 1}`}
+                className="h-[360px] w-full object-cover transition-transform duration-300 hover:scale-105"
+              />
+            </div>
+          );
+        })}
       </div>
 
       {/* Mobile + Medium arrows */}

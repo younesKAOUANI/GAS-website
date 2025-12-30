@@ -27,7 +27,7 @@ export default function ArticleCard({
       {coverImage && (
         <div className="relative h-56 w-full">
           <Image
-            src={coverImage}
+            src={coverImage.startsWith('http') ? coverImage : `${process.env.NEXT_PUBLIC_STRAPI_URL}${coverImage.startsWith('/') ? coverImage : '/' + coverImage}`}
             alt={coverAlt || title}
             fill
             className="object-cover"
@@ -35,7 +35,6 @@ export default function ArticleCard({
           />
         </div>
       )}
-
       {/* Content */}
       <div className="p-5">
         {/* Title */}
@@ -46,17 +45,17 @@ export default function ArticleCard({
         {/* Author */}
         <div className="mt-4 flex items-center gap-3 text-sm text-gray-500">
             {authorAvatar ? (
-                <Image
-                    src={authorAvatar}
-                    alt={authorName}
-                    width={28}
-                    height={28}
-                    className="rounded-full"
-                />
+              <Image
+                src={authorAvatar.startsWith('http') ? authorAvatar : `${process.env.NEXT_PUBLIC_STRAPI_URL}${authorAvatar.startsWith('/') ? authorAvatar : '/' + authorAvatar}`}
+                alt={authorName}
+                width={28}
+                height={28}
+                className="rounded-full"
+              />
             ) : (
-                <div className="w-7 h-7 rounded-full bg-gray-200 flex items-center justify-center">
-                    <span className="text-gray-400 text-lg">👤</span>
-                </div>
+              <div className="w-7 h-7 rounded-full bg-gray-200 flex items-center justify-center">
+                <span className="text-gray-400 text-lg">👤</span>
+              </div>
             )}
 
             <span className="font-medium text-gray-800">{authorName}</span>

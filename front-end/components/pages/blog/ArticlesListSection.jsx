@@ -3,6 +3,7 @@ import ArticleCard from "./ArticleCard";
 export default function ArticlesListSection({ articles = [] }) {
   if (!articles.length) return null;
 
+  console.log("ArticlesListSection articles:", articles);
   const latestArticles = articles.slice(0, 2);
   const otherArticles = articles.slice(2);
 
@@ -27,7 +28,7 @@ export default function ArticlesListSection({ articles = [] }) {
     shares={article.shares}
     authorName={article.author.name}
     authorAvatar={article.author.avatar}
-    coverImage={article.coverImage.url}
+      coverImage={article.coverImage?.url ? `${process.env.NEXT_PUBLIC_STRAPI_URL}${article.coverImage.url.startsWith('/') ? article.coverImage.url : '/' + article.coverImage.url}` : undefined}
     coverAlt={article.coverImage.alt}
   />
 ))}
@@ -54,7 +55,7 @@ export default function ArticlesListSection({ articles = [] }) {
     shares={article.shares}
     authorName={article.author.name}
     authorAvatar={article.author.avatar}
-    coverImage={article.coverImage.url}
+      coverImage={article.coverImage?.url ? `${process.env.NEXT_PUBLIC_STRAPI_URL}${article.coverImage.url.startsWith('/') ? article.coverImage.url : '/' + article.coverImage.url}` : undefined}
     coverAlt={article.coverImage.alt}
   />
 ))}

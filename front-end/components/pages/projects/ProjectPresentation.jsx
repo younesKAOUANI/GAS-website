@@ -131,7 +131,7 @@ export default function ProjectPresentation({
         {/* Right */}
         <div className="overflow-hidden rounded-2xl bg-white shadow">
           <img
-            src={mapImage}
+            src={mapImage && mapImage.startsWith('http') ? mapImage : mapImage && mapImage.startsWith('/') ? mapImage : mapImage ? `${process.env.NEXT_PUBLIC_STRAPI_URL}${mapImage.startsWith('/') ? mapImage : '/' + mapImage}` : ''}
             alt="Localisation du projet"
             className="h-full w-full object-cover"
           />

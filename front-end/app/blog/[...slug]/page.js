@@ -59,8 +59,35 @@ export default async function ArticlePage({ params }) {
   const article = await fetchArticle(slug);
   if (!article) notFound();
 
+  // Get cover image URL (Strapi v4/v5 compatible)
+  let coverUrl = '';
+  let coverAlt = article.title;
+  if (article.cover) {
+    if (article.cover.url) {
+      coverUrl = article.cover.url.startsWith('http')
+        ? article.cover.url
+        : `${process.env.NEXT_PUBLIC_STRAPI_URL}${article.cover.url}`;
+      coverAlt = article.cover.alternativeText || article.title;
+    } else if (article.cover.data && article.cover.data.attributes?.url) {
+      coverUrl = article.cover.data.attributes.url.startsWith('http')
+        ? article.cover.data.attributes.url
+        : `${process.env.NEXT_PUBLIC_STRAPI_URL}${article.cover.data.attributes.url}`;
+      coverAlt = article.cover.data.attributes.alternativeText || article.title;
+    }
+  }
+
   return (
     <main className="container mx-auto p-4 pt-36">
+      {coverUrl && (
+        <div className="w-full aspect-[4/3] mb-8 rounded-xl overflow-hidden bg-gray-100">
+          <img
+            src={coverUrl}
+            alt={coverAlt}
+            className="w-full h-full object-cover"
+            loading="eager"
+          />
+        </div>
+      )}
       <h1 className="text-3xl font-bold mb-4">{article.title}</h1>
       <p className="text-gray-500 mb-6">
         {new Date(article.publishedAt).toLocaleDateString()}

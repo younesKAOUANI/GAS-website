@@ -37,7 +37,7 @@ export default function VisionSection({ mapImage }) {
 
         <div className="mt-4">
           <Link
-            href="/residences"
+            href="/projects"
             className="inline-flex items-center justify-center rounded-full bg-primary px-8 py-3 text-white font-medium shadow-md transition hover:opacity-90"
           >
             Je découvre les résidences

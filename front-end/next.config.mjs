@@ -15,6 +15,12 @@ export default {
         port: '1337',
         pathname: '/uploads/**',
       },
+      {
+        protocol: 'http',
+        hostname: 'pharmapedia-dz.com',
+        port: '1337',
+        pathname: '/uploads/**',
+      },
     ],
   },
 };

@@ -3,7 +3,17 @@ import Link from "next/link";
 export default function NewsCard({ item }) {
   return (
     <div className="overflow-hidden rounded-2xl border bg-white shadow-sm transition hover:shadow-md">
-      <img src={item.coverImage.url} alt={item.title} className="h-48 w-full object-cover" />
+      <div className="w-full aspect-[4/3] bg-gray-100">
+        <img
+          src={item.coverImage?.url
+            ? item.coverImage.url.startsWith('http')
+              ? item.coverImage.url
+              : `${process.env.NEXT_PUBLIC_STRAPI_URL}${item.coverImage.url.startsWith('/') ? item.coverImage.url : '/' + item.coverImage.url}`
+            : ''}
+          alt={item.title}
+          className="w-full h-full object-cover"
+        />
+      </div>
 
       <div className="p-5">
         <h3 className="font-semibold text-2xl text-gray-900">{item.title}</h3>

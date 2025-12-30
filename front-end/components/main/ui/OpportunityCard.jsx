@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function OpportunityCard({ item }) {
 
     const formatNumber = (num) => {
@@ -7,20 +9,26 @@ export default function OpportunityCard({ item }) {
             .replace(/\B(?=(\d{3})+(?!\d))/g, " ");
     };
 
-    return (
-        <div className="rounded-2xl bg-[#EEF1FF] p-4 shadow-sm transition hover:shadow-md">
-            {/* Image */}
-            <div className="relative mb-4 overflow-hidden rounded-xl">
-                <img src={item.image.formats.small.url} alt={item.title} className="h-150 w-full object-cover" />
+        return (
+                <div className="rounded-2xl bg-[#EEF1FF] p-4 shadow-sm transition hover:shadow-md">
+                        {/* Image */}
+                        <div className="relative mb-4 overflow-hidden rounded-xl aspect-[4/3] w-full">
+                                <img
+                                    src={item.image.formats.small.url?.startsWith('http')
+                                        ? item.image.formats.small.url
+                                        : `${process.env.NEXT_PUBLIC_STRAPI_URL}${item.image.formats.small.url}`}
+                                    alt={item.title}
+                                    className="absolute inset-0 w-full h-full object-cover"
+                                />
 
                 {/* Badges */}
-                <div className="absolute left-3 top-3 space-y-2">
-                    <span className="block rounded-full bg-primary px-3 py-1 text-xs text-white uppercase">
-                        {item.detail}
-                    </span>
-                    <span className="block rounded-full bg-white px-3 py-1 text-xs text-primary">
-                        {item.type}
-                    </span>
+                <div className="absolute left-3 top-3 flex flex-col items-start space-y-2">
+                        <span className="inline-block rounded-full bg-primary px-3 py-1 text-xs text-white uppercase w-auto max-w-full whitespace-nowrap">
+                            {item.detail}
+                        </span>
+                        <span className="inline-block rounded-full bg-white px-3 py-1 text-xs text-primary w-auto max-w-full whitespace-nowrap">
+                            {item.typology}
+                        </span>
                 </div>
             </div>
 
@@ -53,9 +61,9 @@ export default function OpportunityCard({ item }) {
                 </p>
             </div>
 
-            <button className="mt-4 w-full rounded-full border border-primary px-4 py-2 text-sm text-primary transition hover:bg-primary hover:text-white">
+            <Link href={"/contact"} className="block text-center mt-4 w-full rounded-full border border-primary px-4 py-2 text-sm text-primary transition hover:bg-primary hover:text-white">
                 Je réserve maintenant
-            </button>
+            </Link>
         </div>
     );
 }

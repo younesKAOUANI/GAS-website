@@ -10,14 +10,16 @@ async function getArticles() {
   );
 
   if (!res.ok) {
+    console.error("Failed to fetch articles:", res.status, res.statusText);
     throw new Error("Failed to fetch articles");
   }
 
   const articles = await res.json();
+  console.log("Fetched articles data:", articles);
   return articles.data?.map((item) => ({
     id: item.id,
     title: item.title,
-    excerpt: item.excerpt,
+    excerpt: item.description,
     slug: item.slug,
     publishedAt: item.publishedAt,
     shares: item.shares,
@@ -51,7 +53,7 @@ export default async function BlogPage() {
     return (
       <div className="container min-h-[600px] flex items-center justify-center mx-auto px-4 py-24 pt-36">
         <div className="text-center text-red-600 bg-red-50 border border-red-200 rounded p-6">
-         Erreur lors du chargement des articles.
+          Erreur lors du chargement des articles.
         </div>
       </div>
     );
