@@ -236,6 +236,59 @@
           "files": ["coffee-art.jpg", "coffee-beans.jpg"]
         }
       ]
+    },
+    {
+      "title": "Understanding Real Estate Investment",
+      "slug": "understanding-real-estate-investment",
+      "category": { "id": 1 },
+      "author": { "id": 1 },
+      "description": "A classic guide to the basics of real estate investment.",
+      "cover": null,
+      "blocks": [
+        { "__component": "shared.rich-text", "body": "## Introduction\n\nReal estate investment has long been considered a stable and profitable way to build wealth. In this article, we explore the fundamentals every investor should know." },
+        { "__component": "shared.quote", "title": "Classic Wisdom", "body": "Buy land, they're not making it anymore." },
+        { "__component": "shared.media", "file": "placeholder.jpg" },
+        { "__component": "shared.rich-text", "body": "### Key Principles\n\n- Location matters most\n- Diversify your portfolio\n- Understand market cycles" }
+      ]
+    },
+    {
+      "title": "The History of Urban Housing",
+      "slug": "the-history-of-urban-housing",
+      "category": { "id": 1 },
+      "author": { "id": 2 },
+      "description": "Tracing the evolution of housing in cities from ancient times to today.",
+      "cover": null,
+      "blocks": [
+        { "__component": "shared.rich-text", "body": "## Urban Living Through the Ages\n\nFrom Roman insulae to modern skyscrapers, urban housing has evolved to meet the needs of growing populations." },
+        { "__component": "shared.media", "file": "placeholder.jpg" },
+        { "__component": "shared.rich-text", "body": "### Modern Challenges\n\nAffordable housing, sustainability, and smart cities are shaping the future of urban living." }
+      ]
+    },
+    {
+      "title": "How to Value a Property",
+      "slug": "how-to-value-a-property",
+      "category": { "id": 1 },
+      "author": { "id": 1 },
+      "description": "Learn the classic methods for valuing real estate properties.",
+      "cover": null,
+      "blocks": [
+        { "__component": "shared.rich-text", "body": "## Valuation Methods\n\nThere are several ways to determine the value of a property, including the sales comparison, income, and cost approaches." },
+        { "__component": "shared.media", "file": "placeholder.jpg" },
+        { "__component": "shared.rich-text", "body": "### Tips for Accurate Valuation\n\n- Research comparable sales\n- Consider location and amenities\n- Consult professionals when needed" }
+      ]
+    },
+    {
+      "title": "Classic Architecture Styles in Real Estate",
+      "slug": "classic-architecture-styles-in-real-estate",
+      "category": { "id": 1 },
+      "author": { "id": 2 },
+      "description": "An overview of timeless architectural styles found in real estate.",
+      "cover": null,
+      "blocks": [
+        { "__component": "shared.rich-text", "body": "## Timeless Designs\n\nFrom Victorian to Art Deco, classic architecture styles continue to inspire modern real estate developments." },
+        { "__component": "shared.media", "file": "placeholder.jpg" },
+        { "__component": "shared.rich-text", "body": "### Recognizing Styles\n\n- Victorian\n- Colonial\n- Art Deco\n- Modernist" }
+      ]
     }
   ]
 }
