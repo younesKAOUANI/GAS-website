@@ -7,4 +7,4 @@ if [ -z "$1" ]; then
   exit 1
 fi
 
-psql -U gas -d gas_strapi -h 127.0.0.1 -f "$1"
+cat "$1" | docker exec -i gas-website-postgres-1 psql -U strapi -d strapi

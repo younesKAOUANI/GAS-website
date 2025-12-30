@@ -7,4 +7,4 @@ if [ -z "$1" ]; then
   exit 1
 fi
 
-pg_dump -U gas -h 127.0.0.1 -d gas_strapi -F p -f "$1"
+docker exec -i gas-website-postgres-1 pg_dump --clean --if-exists -U strapi -d strapi -F p --exclude-table=admin_users --exclude-table=admin_users_roles_lnk > "$1"
