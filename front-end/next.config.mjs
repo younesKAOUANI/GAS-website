@@ -3,7 +3,7 @@ export default {
     return [
       {
         source: '/uploads/:path*',
-        destination: 'http://127.0.0.1:1337/uploads/:path*', // proxy to Strapi
+        destination: 'http://pharmapedia-dz.com:1337/uploads/:path*', // proxy to Strapi
       },
     ];
   },
