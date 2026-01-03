@@ -3,7 +3,7 @@ export default {
     return [
       {
         source: '/uploads/:path*',
-        destination: 'http://pharmapedia-dz.com:1337/uploads/:path*', // proxy to Strapi
+        destination: 'https://admin.groupahmedsoltan.com/uploads/:path*', // proxy to Strapi
       },
     ];
   },
@@ -16,9 +16,8 @@ export default {
         pathname: '/uploads/**',
       },
       {
-        protocol: 'http',
-        hostname: 'pharmapedia-dz.com',
-        port: '1337',
+        protocol: 'https',
+        hostname: 'admin.groupahmedsoltan.com',
         pathname: '/uploads/**',
       },
     ],
