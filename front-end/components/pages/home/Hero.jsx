@@ -102,6 +102,7 @@ export default function HomeHero({ media = {}, interval = 5000 }) {
                 alt={`Hero media ${index + 1}`}
                 fill
                 priority={index === 0}
+                fetchPriority="high"
                 className="object-cover"
               />
             )}

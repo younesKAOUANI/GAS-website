@@ -9,7 +9,7 @@ export default function Footer() {
     { href: "/blog", label: "L'Actu du Groupe" },
   ];
 
-  const localities = ["Draria", "Burj Al-Kifan", "Burj Al Bahri", "Kouba"];
+  const localities = ["Draria", "Bordj El Kiffan", "Bordj El Bahri", "Kouba"];
 
   return (
     <footer className="relative overflow-hidden">
@@ -54,7 +54,7 @@ export default function Footer() {
 
           {/* Localities - Takes 2 columns on large screens */}
           <div className="lg:col-span-2">
-            <h3 className="text-lg sm:text-2xl font-semibold mb-1 sm:mb-2">Localities</h3>
+            <h3 className="text-lg sm:text-2xl font-semibold mb-1 sm:mb-2">Localités</h3>
               <div className="h-[3px] w-12 rounded-full bg-[#3C8FCD] mb-3 sm:mb-6"></div>
             <ul className="space-y-1.5 sm:space-y-2 text-base sm:text-lg">
               {localities.map((l) => (
@@ -63,7 +63,12 @@ export default function Footer() {
                     aria-hidden 
                     className="mt-1.5 sm:mt-2 h-1.5 w-1.5 sm:h-2 sm:w-2 flex-shrink-0 rounded-full bg-white/90" 
                   />
-                  <span className="break-words">{l}</span>
+                  <Link 
+                    href={`/projects?location=${encodeURIComponent(l)}`} 
+                    className="break-words hover:underline"
+                  >
+                    {l}
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -71,7 +76,7 @@ export default function Footer() {
 
           {/* Coordinates - Takes 4 columns on large screens, spans 2 on medium */}
           <div className="sm:col-span-2 lg:col-span-4">
-            <h3 className="text-xl sm:text-2xl font-semibold mb-1 sm:mb-2">Coordinates</h3>
+            <h3 className="text-xl sm:text-2xl font-semibold mb-1 sm:mb-2">Coordonnées</h3>
               <div className="h-[3px] w-12 rounded-full bg-[#3C8FCD] mb-3 sm:mb-6"></div>
 
             <div className="space-y-2.5 sm:space-y-3 text-base font-light sm:text-lg">
@@ -88,15 +93,11 @@ export default function Footer() {
                 <p className="break-words">Ben Redouane, Bordj El Kiffan, Alger</p>
               </div>
 
-              <div className="flex items-start gap-2 sm:gap-3">
-                <svg 
-                  className="flex-shrink-0 mt-0.5 sm:mt-1 w-4 h-5 sm:w-[17px] sm:h-[22px]" 
-                  viewBox="0 0 17 22" 
-                  fill="none" 
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path d="M8.5 0C6.24648 0.00265854 4.08602 0.899045 2.49253 2.49253C0.899053 4.08601 0.00266759 6.24647 9.04313e-06 8.49999C-0.00269001 10.3416 0.598857 12.1332 1.71237 13.6C1.71237 13.6 1.94419 13.9052 1.98205 13.9493L8.5 21.6363L15.021 13.9454C15.055 13.9044 15.2876 13.6 15.2876 13.6L15.2884 13.5977C16.4014 12.1315 17.0026 10.3407 17 8.49999C16.9973 6.24647 16.1009 4.08601 14.5075 2.49253C12.914 0.899045 10.7535 0.00265854 8.5 0ZM8.5 11.5909C7.88868 11.5909 7.29108 11.4096 6.78278 11.07C6.27449 10.7304 5.87832 10.2476 5.64438 9.68283C5.41043 9.11804 5.34922 8.49656 5.46849 7.89699C5.58775 7.29741 5.88213 6.74666 6.3144 6.31439C6.74667 5.88212 7.29742 5.58774 7.89699 5.46848C8.49657 5.34921 9.11805 5.41042 9.68284 5.64437C10.2476 5.87831 10.7304 6.27448 11.07 6.78278C11.4096 7.29107 11.5909 7.88867 11.5909 8.49999C11.5899 9.31944 11.2639 10.105 10.6845 10.6845C10.105 11.2639 9.31945 11.5899 8.5 11.5909Z" fill="white" />
-                </svg>
+              <div className="flex items-center gap-2 sm:gap-3">
+<svg width="17" height="14" viewBox="0 0 17 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M5.38991e-09 3.98533L8.23264 8.295C8.31522 8.33822 8.40692 8.36078 8.5 8.36078C8.59308 8.36078 8.68478 8.33822 8.76736 8.295L17 3.98611V11.4722C17 12.1179 16.7546 12.7391 16.3141 13.2084C15.8735 13.6777 15.2713 13.9596 14.6308 13.9961L14.4886 14H2.51136C1.86989 14 1.25272 13.753 0.786458 13.3096C0.320193 12.8662 0.0401808 12.26 0.00386373 11.6153L5.38991e-09 11.4722V3.98533ZM2.51136 5.42515e-09H14.4886C15.1301 -4.22697e-05 15.7473 0.246986 16.2135 0.690411C16.6798 1.13384 16.9598 1.74004 16.9961 2.38467L17 2.52778V2.67089L8.5 7.11978L5.38991e-09 2.67089V2.52778C-4.19952e-05 1.88212 0.245383 1.26091 0.685928 0.791598C1.12647 0.322285 1.72874 0.0404434 2.36918 0.00388898L2.51136 5.42515e-09H14.4886H2.51136Z" fill="white"/>
+</svg>
+
                 <p className="break-words">contact@groupeahmedsoltan.com</p>
               </div>
 
@@ -132,7 +133,7 @@ export default function Footer() {
               </p>
 
               <a 
-                href="/catalogue.pdf" 
+                href="/assets/catalogue.pdf" 
                 download 
                 className="inline-block rounded border-2 border-primary px-4 sm:px-6 py-2 sm:py-2.5 text-base sm:text-xl font-black text-primary hover:bg-primary hover:text-white transition-colors w-full text-center"
               >

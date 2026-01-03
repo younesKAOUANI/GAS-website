@@ -8,7 +8,7 @@ export default function FinitionCard({ image, title, description, href }) {
       </div>
 
       <div className="px-4 py-6 flex flex-col items-center text-center">
-        <h4 className="text-primary text-2xl font-black mb-2">{title}</h4>
+        <h3 className="text-primary text-2xl font-black mb-2">{title}</h3>
         <p className="text-md text-zinc-600 mb-4">{description}</p>
         <a
           href={href || '#'}

@@ -14,10 +14,10 @@ export default function OpportunityCard({ item }) {
                         {/* Image */}
                         <div className="relative mb-4 overflow-hidden rounded-xl aspect-[4/3] w-full">
                                 <img
-                                    src={item.image.formats.small.url?.startsWith('http')
+                                    src={item?.image?.formats?.small?.url?.startsWith('http')
                                         ? item.image.formats.small.url
-                                        : `${process.env.NEXT_PUBLIC_STRAPI_URL}${item.image.formats.small.url}`}
-                                    alt={item.title}
+                                        : `${process.env.NEXT_PUBLIC_STRAPI_URL}${item?.image?.formats?.small?.url || ''}`}
+                                    alt={item?.image?.alternativeText || item?.title || item?.name || "Opportunité"}
                                     className="absolute inset-0 w-full h-full object-cover"
                                 />
 

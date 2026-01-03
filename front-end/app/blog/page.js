@@ -1,5 +1,26 @@
 import ArticlesListSection from "@/components/pages/blog/ArticlesListSection";
 import NewsletterBanner from "@/components/pages/blog/NewsletterBanner";
+import { generateMetadata as generateMeta, generateBreadcrumbSchema } from '@/utils/metadata';
+
+export const metadata = generateMeta({
+  title: "L'Actu du Groupe",
+  description: "Suivez l'actualité du Groupe Ahmed Soltan : conseils immobiliers, nouveaux projets, tendances du marché en Algérie et actualités du secteur.",
+  path: '/blog',
+  keywords: [
+    'actualité immobilière Algérie',
+    'blog immobilier',
+    'conseils achat appartement',
+    'tendances immobilier Alger',
+    'GAS actualités',
+    'articles immobilier',
+  ],
+  ogImage: '/assets/og-blog.jpg',
+  ogImageAlt: "L'actualité du Groupe Ahmed Soltan",
+  structuredData: generateBreadcrumbSchema([
+    { name: 'Accueil', path: '/' },
+    { name: 'Blog', path: '/blog' },
+  ]),
+});
 
 async function getArticles() {
   const res = await fetch(
