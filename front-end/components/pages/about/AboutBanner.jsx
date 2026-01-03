@@ -18,7 +18,7 @@ const AboutBanner = ({ image }) => {
 
       {/* Floating Info Card */}
       <div className="absolute bottom-[-80px] z-20 md:container max-w-[90%] bg-white rounded-2xl inner-shadow p-8 text-center border border-gray-100">
-        <h1 className="text-3xl md:text-4xl font-bold text-primary mb-4">
+        <h1 className="text-4xl md:text-4xl font-bold text-primary mb-4">
           Là Où Naît La Confiance
         </h1>
         <p className="text-gray-600 text-xl leading-relaxed px-12 mb-8 mx-auto">

@@ -2,10 +2,14 @@
 
 import ProjectsBanner from "@/components/pages/projects/ProjectsBanner";
 import ProjectsList from "@/components/pages/projects/ProjectsList";
-import { useState } from "react";
+import { Suspense, useEffect, useState } from "react";
+import { useSearchParams } from "next/navigation";
+
+export const dynamic = "force-dynamic";
 
 
-export default function ProjectsPage() {
+function ProjectsPageContent() {
+  const searchParams = useSearchParams();
   const [filters, setFilters] = useState({
     location: "",
     status: "",
@@ -14,6 +18,22 @@ export default function ProjectsPage() {
   });
 
   const [appliedFilters, setAppliedFilters] = useState(filters);
+
+  useEffect(() => {
+    const locationFromUrl = searchParams.get("location") || "";
+
+    if (!locationFromUrl) return;
+
+    const nextFilters = {
+      location: locationFromUrl,
+      status: "",
+      typology: "",
+      finish: "",
+    };
+
+    setFilters(nextFilters);
+    setAppliedFilters(nextFilters);
+  }, [searchParams]);
 
   return (
     <>
@@ -30,5 +50,13 @@ export default function ProjectsPage() {
 
       <ProjectsList filters={appliedFilters} />
     </>
+  );
+}
+
+export default function ProjectsPage() {
+  return (
+    <Suspense fallback={<div className="min-h-[50vh] flex items-center justify-center">Chargement...</div>}>
+      <ProjectsPageContent />
+    </Suspense>
   );
 }

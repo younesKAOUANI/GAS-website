@@ -19,10 +19,11 @@ export default function ContactHero() {
 
       {/* Content */}
       <div className="relative z-10 flex min-h-[60vh] md:min-h-[70vh] lg:min-h-[700px] items-center justify-center px-4">
-        <h1 className="text-center font-bold text-white leading-loose
-          text-2xl sm:text-3xl md:text-4xl lg:text-5xl ">
+        <h1
+          className="text-center font-bold text-white leading-loose text-2xl sm:text-3xl md:text-4xl lg:text-5xl"
+        >
           N’hésitez pas à nous <br />
-          <span className="text-primary">Contacter</span>
+          <span className="text-primary block mt-2">Contacter</span>
         </h1>
       </div>
     </section>

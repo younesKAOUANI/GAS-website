@@ -17,20 +17,21 @@ export default function OpportunitiesClient({ opportunities }) {
             ? type === "appartement"
             : type === "local commercial";
         });
-if (items.length === 0) {
+
+  if (items.length === 0) {
     return null;
   }
   return (
-    <section className="py-16 max-w-6xl mx-auto">
-      <div className="mb-8 flex items-center justify-between">
-        <h2 className="text-4xl font-semibold text-primary">
+    <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+      <div className="mb-8 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+        <h2 className="text-3xl sm:text-4xl font-semibold text-primary text-center md:text-left">
           Opportunité du moment
         </h2>
 
-        <div className="flex gap-2">
+        <div className="flex w-full items-center gap-2 overflow-x-auto pb-1 md:w-auto md:justify-end md:overflow-visible">
           <button
             onClick={() => setFilter("all")}
-            className={`rounded-full px-4 py-1 text-sm ${
+            className={`flex-shrink-0 rounded-full px-4 py-2 text-sm ${
               filter === "all"
                 ? "bg-primary text-white"
                 : "border text-primary"
@@ -41,7 +42,7 @@ if (items.length === 0) {
 
           <button
             onClick={() => setFilter("appartement")}
-            className={`rounded-full px-4 py-1 text-sm ${
+            className={`flex-shrink-0 rounded-full px-4 py-2 text-sm ${
               filter === "appartement"
                 ? "bg-primary text-white"
                 : "border text-primary"
@@ -52,7 +53,7 @@ if (items.length === 0) {
 
           <button
             onClick={() => setFilter("local")}
-            className={`rounded-full px-4 py-1 text-sm ${
+            className={`flex-shrink-0 rounded-full px-4 py-2 text-sm ${
               filter === "local"
                 ? "bg-primary text-white"
                 : "border text-primary"
@@ -63,7 +64,7 @@ if (items.length === 0) {
         </div>
       </div>
 
-      <div className="grid gap-6 md:grid-cols-3">
+      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {filtered.map((item) => (
           <OpportunityCard key={item.id} item={item} />
         ))}

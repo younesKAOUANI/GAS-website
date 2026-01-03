@@ -2,6 +2,27 @@ import AboutBanner from "@/components/pages/about/AboutBanner";
 import History from "@/components/pages/about/HistorySection";
 import TeamSection from "@/components/pages/about/TeamSection";
 import VisionSection from "@/components/pages/about/VisionSection";
+import { generateMetadata as generateMeta, generateBreadcrumbSchema } from '@/utils/metadata';
+
+export const metadata = generateMeta({
+  title: 'À Propos de Nous',
+  description: 'Découvrez l\'histoire et les valeurs du Groupe Ahmed Soltan, promoteur immobilier de confiance depuis des années. Notre mission : offrir des logements de qualité en Algérie.',
+  path: '/about',
+  keywords: [
+    'Groupe Ahmed Soltan',
+    'histoire GAS',
+    'promoteur immobilier Algérie',
+    'valeurs immobilières',
+    'entreprise immobilière Alger',
+    'qui sommes-nous',
+  ],
+  ogImage: '/assets/og-about.jpg',
+  ogImageAlt: 'L\'équipe du Groupe Ahmed Soltan',
+  structuredData: generateBreadcrumbSchema([
+    { name: 'Accueil', path: '/' },
+    { name: 'À Propos', path: '/about' },
+  ]),
+});
 
 export default async function AboutPage() {
 
@@ -37,26 +58,3 @@ export default async function AboutPage() {
     </div>
   );
 }
-
-
-import { generateMetadata as generateMeta, generateBreadcrumbSchema } from '@/utils/metadata';
-
-export const metadata = generateMeta({
-  title: 'À Propos de Nous',
-  description: 'Découvrez l\'histoire et les valeurs du Groupe Ahmed Soltan, promoteur immobilier de confiance depuis des années. Notre mission : offrir des logements de qualité en Algérie.',
-  path: '/about',
-  keywords: [
-    'Groupe Ahmed Soltan',
-    'histoire GAS',
-    'promoteur immobilier Algérie',
-    'valeurs immobilières',
-    'entreprise immobilière Alger',
-    'qui sommes-nous',
-  ],
-  ogImage: '/assets/og-about.jpg', // 1200x630px - Team photo or company building
-  ogImageAlt: 'L\'équipe du Groupe Ahmed Soltan',
-  structuredData: generateBreadcrumbSchema([
-    { name: 'Accueil', path: '/' },
-    { name: 'À Propos', path: '/about' },
-  ]),
-});

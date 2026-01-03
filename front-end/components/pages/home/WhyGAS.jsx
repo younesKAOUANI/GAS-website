@@ -86,7 +86,7 @@ export default function WhyGAS() {
       </div>
         <div className="mx-auto max-w-6xl px-6">
             {/* Title */}
-            <h2 className="mb-14 text-center text-3xl font-bold text-gray-900">
+            <h2 className="mb-14 text-center text-4xl font-bold text-gray-900">
                 Pourquoi Groupe Ahmed Soltan ?
             </h2>
 

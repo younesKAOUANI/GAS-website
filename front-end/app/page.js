@@ -5,6 +5,26 @@ import { NewsSection } from "@/components/pages/home/NewsSection";
 import OpportunitiesSection from "@/components/pages/home/Opportunities";
 import TestimonialsSection from "@/components/pages/home/Testimonials";
 import WhyGAS from "@/components/pages/home/WhyGAS";
+import { generateMetadata as generateMeta, generateOrganizationSchema } from '@/utils/metadata';
+
+export const metadata = generateMeta({
+  title: 'Promoteur Immobilier en Algérie',
+  description: 'Groupe Ahmed Soltan - Promoteur immobilier de confiance en Algérie. Découvrez nos résidences de qualité à Alger, Draria, Bordj El Kiffan, Bordj El Bahri, et Kouba. Trouvez votre futur logement.',
+  path: '/',
+  keywords: [
+    'immobilier Algérie',
+    'promoteur immobilier Alger',
+    'résidence Alger',
+    'appartement Alger',
+    'logement neuf Algérie',
+    'Groupe Ahmed Soltan',
+    'GAS immobilier',
+    'promotion immobilière Algérie',
+  ],
+  ogImage: '/assets/og-home.jpg',
+  ogImageAlt: 'Groupe Ahmed Soltan - Promoteur Immobilier en Algérie',
+  structuredData: generateOrganizationSchema(),
+});
 
 export default async function Home() {
   	const res = await fetch(
@@ -48,30 +68,3 @@ if (resHero.ok) {
     </main>
   );
 }
-
-
-
-
-// ============================================
-// app/page.js (Home Page)
-// ============================================
-import { generateMetadata as generateMeta, generateOrganizationSchema } from '@/utils/metadata';
-
-export const metadata = generateMeta({
-  title: 'Promoteur Immobilier en Algérie',
-  description: 'Groupe Ahmed Soltan - Promoteur immobilier de confiance en Algérie. Découvrez nos résidences de qualité à Alger, Draria, Burj Al-Kifan, Burj Al Bahri, et Kouba. Trouvez votre futur logement.',
-  path: '/',
-  keywords: [
-    'immobilier Algérie',
-    'promoteur immobilier Alger',
-    'résidence Alger',
-    'appartement Alger',
-    'logement neuf Algérie',
-    'Groupe Ahmed Soltan',
-    'GAS immobilier',
-    'promotion immobilière Algérie',
-  ],
-  ogImage: '/assets/og-home.jpg', // 1200x630px
-  ogImageAlt: 'Groupe Ahmed Soltan - Promoteur Immobilier en Algérie',
-  structuredData: generateOrganizationSchema(),
-});
